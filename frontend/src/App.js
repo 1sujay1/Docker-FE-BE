@@ -76,6 +76,7 @@ const App = () => {
   }
   return (
     <div className="mainDiv">
+      {error ? <h1 style={{ color: "red" }}>{error}</h1> : null}
       <h1>New Goal</h1>
       {isLoading ? (
         <h1>Loading...</h1>
