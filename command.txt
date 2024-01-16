@@ -1,0 +1,66 @@
+## Docker Connection With Mongo DB
+
+## Steps to be followed:
+
+git clone
+
+cd Docker-Mongo
+
+npm install
+
+npm run dev
+
+# Docker_part2
+
+To List Image : docker images || docker images -a
+To List Docker Container(Running): docker ps
+To List Docker Container(Both Running and Stopped) : docker ps -a
+To Search Docker Container OR Images : docker ps | grep "container_name"
+To Create Image : docker build -t goal:latest .
+To Create Docker Container : docker run -p 4000:80 -d --rm --name myGoal goal:latest
+To Remote Image : docker rmi goal:latest(or Image Id)
+To Remove Container: docker rm myGoal
+To Stop Docker : docker stop myGoal
+To Restart Docker : docker restart myGoal
+To Remove all Images : docker image prune (Removes all except TAG based images) || docker image prune -a(Removes all images including TAG)
+To get User Input(interactive container not server) : docker run -it goal:latest
+To Get Logs: docker logs -f --tail 100 myGoal
+To Search Log message: docker logs myGoal 2>&1 | grep "testMessage"
+To Login Docker Hub : Docker login
+To Logout Docker Hub : Docker logout
+To Share Image: docker push image_name
+To Use Image : docker pull image_name
+To Rename Images: docker tag old_image_name new_image_name
+To Copy files/folders from local to docker : docker cp source destination
+To Create a network: docker network create network_name
+
+Note:
+-a: list all
+-t: assign image name
+--name: assign docker name
+-d : detach mode (cmd will be available for usage where another terminal not needed to stop or get logs)
+goal:latest = name:Tag
+
+# Docker Build Image Command:
+
+docker build -t demoImage:checkTag .
+
+# Docker Container Build Command:
+
+docker run -d -p 4000:80 --rm --name feedback-app demoImage:checkTag
+
+# Docker Container Build Command with Volume [persist without manual path set]:
+
+docker run -d -p 4000:80 --rm --name feedback-app -v feedbackName:/apps/feedback demoImage:checkTag
+
+# Docker Container Build Command with Volume [with own path given]:
+
+docker run -d -p 4000:80 --rm --name feedback-app -v feedbackName:/apps/feedback -v "D:\Sujay\projects\docker\Docker_part2:/apps" -v /apps/node_modules demoImage:checkTag
+
+# Docker Container Build Command with port:
+
+docker run -d -p 4000:80 -e PORT=8000 --rm --name feedback-app demoImage:checkTag
+
+# Database connection
+
+mongodb+srv://admin:admin@cluster0.2sucg.mongodb.net/
